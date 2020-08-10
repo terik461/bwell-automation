@@ -57,12 +57,13 @@ When('I click appointments services should appear on the dropdown', async functi
   await services.click()
 });
 
-// When('I click services results should appear', async function() {
-//   const query = By.css("#paris-view > div.detail > div > header > div.item-vitals > div > h3")
-//   const element = await driver.wait(() => driver.findElement(query))
-//   const text = await element.getText()
-//   expect(text).to.equal.toUpperCase()
-// });
+When('I click services {string} should appear', async function(header) {
+  const query = By.css("#paris-view > div.detail > div > header > div.item-vitals > div > h3")
+  await driver.sleep(3000)
+  const element = await driver.wait(() => driver.findElement(query))
+  const text = await element.getText()
+  expect(text).to.equal(header)
+});
 
 // When('I click sort ascending on service name column', async function(string, string2) {
 //   const element = await driver.findElement(By.css("#gridcolumn-1375-titleEl"))
