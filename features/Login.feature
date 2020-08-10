@@ -12,13 +12,13 @@ Feature: Bwell Automation QA Task
     Then I should see my dashboard
 
   Scenario: The user can sort in ascending order all Appointments services by name
-  	Given I am on 'http://login.myappcms.com/build' page
-  	When I click appointments services should appear on the dropdown
+    Given I am on 'http://login.myappcms.com/build' page
+    When I click appointments services should appear on the dropdown
     And I click services 'Services' should appear
     And I click sort ascending on service name column
-  	Then I should see correct results list
+    Then I should see correct results list
 
   Scenario: The user can search all Appointments services by name
-  	Given I am on 'http://login.myappcms.com/build' page
-  	When I type 'colour' in the Search box
-  	Then I should see colour results list
+    Given I am on 'http://login.myappcms.com/build' page
+    When I type 'colour' in the Search box
+    Then I should see colour results list
