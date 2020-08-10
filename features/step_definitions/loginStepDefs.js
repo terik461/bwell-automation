@@ -71,9 +71,10 @@ When('I click sort ascending on service name column', async function() {
   await element.click()
 });
 
-// Then('I should see correct results list', async function () {
-
-// });
+Then('I should see correct results list', async function () {
+  const element = await driver.findElement(By.css('.tabletabs .x-column-header-first.x-column-header-sort-ASC'))
+  assert(element)
+});
 
 // Given('I am on {string} home page', async function(url) {
 //   driver.get(`${url}`)
