@@ -12,6 +12,7 @@ const driver = new Builder().withCapabilities(capabilities).build();
 driver.manage().setTimeouts({implicit: 20000})
 
 Given('I am on {string} homepage', function(url) {
+  driver.manage().deleteAllCookies()
   driver.get(`${url}`)
 });
 
