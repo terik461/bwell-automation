@@ -48,7 +48,7 @@ Then('I should see my dashboard', async function() {
 });
 
 Given('I am on {string} page', async function(url) {
-  await driver.get(`${url}`)
+  expect(await driver.getCurrentUrl()).to.equal(url)
 });
 
 When('I click appointments services should appear on the dropdown', async function() {
@@ -76,21 +76,20 @@ Then('I should see correct results list', async function () {
   assert(element)
 });
 
-Given('I am on {string} home page', async function(url) {
-  expect(await driver.getCurrentUrl()).to.equal(url)
-});
-
 When('I type {string} in the Search box', async function(name) {
   const element = await driver.findElement(By.css('.tabletabs .x-form-item-input-row input.x-form-text'))
+  // This seems to be pretty inconsistent. It seems like there is latency between beginning and finishing typing.
+  // I recommend adding a debounce.
   await element.sendKeys(name)
 });
 
-// Then('I should see correct results list',{timeout: 10000}, async function() {
-//   const query = By.css("#gridview-1699-record-ext-record-606 > td.x-grid-cell.x-grid-td.x-grid-cell-headerId-gridcolumn-1674.x-grid-cell-first.x-unselectable > div")
-//   const element = await driver.wait(() => driver.findElement(query))
-//   const text = await element.getText()
-//   expect(text).to.equal.toUpperCase()
-// });
+Then('I should see colour results list', async function() {
+  const query = By.css('.tabletabs tbody tr td.x-grid-cell-first div')
+  await driver.sleep(5000)
+  const element = await driver.wait(() => driver.findElement(query))
+  const text = await element.getText()
+  expect(text).to.equal('colour')
+});
 
 AfterAll('end', async function(){
   await driver.quit();

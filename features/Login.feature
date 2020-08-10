@@ -19,6 +19,6 @@ Feature: Bwell Automation QA Task
   	Then I should see correct results list
 
   Scenario: The user can search all Appointments services by name
-  	Given I am on 'http://login.myappcms.com/build' home page
+  	Given I am on 'http://login.myappcms.com/build' page
   	When I type 'colour' in the Search box
-  	Then I should see correct results list
+  	Then I should see colour results list
