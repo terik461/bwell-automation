@@ -12,25 +12,25 @@ capabilities.set('chromeOptions', { "w3c": false });
 const driver = new Builder().withCapabilities(capabilities).build();
 driver.manage().setTimeouts({implicit: 20000})
 
-Given('I am on {string} homepage', function(url) {
+Given('I am on {string} homepage', async function(url) {
   driver.manage().deleteAllCookies()
-  driver.get(`${url}`)
+  await driver.get(`${url}`)
 });
 
 When('I type {string} as App Name', async function(appName) {
   this.appName = appName
   const element = await driver.findElement(By.id("appName"))
-  element.sendKeys(appName)
+  await element.sendKeys(appName)
 });
 
 When('I type {string} as Email Address', async function(emailAddress) {
   const element = await driver.findElement(By.id("username"))
-  element.sendKeys(emailAddress)
+  await element.sendKeys(emailAddress)
 });
 
 When('I type {string} as Password', async function(password) {
   const element = await driver.findElement(By.id("password"))
-  element.sendKeys(password)
+  await element.sendKeys(password)
 });
 
 When('I click on Sign in button', async function() {
@@ -47,8 +47,8 @@ Then('I should see my dashboard', async function() {
   expect(text).to.equal(this.appName.toUpperCase())
 });
 
-Given('I am on {string} page', function(url) {
-  driver.get(`${url}`)
+Given('I am on {string} page', async function(url) {
+  await driver.get(`${url}`)
 });
 
 When('I click appointments services should appear on the dropdown', async function() {
@@ -76,14 +76,14 @@ Then('I should see correct results list', async function () {
   assert(element)
 });
 
-// Given('I am on {string} home page', async function(url) {
-//   driver.get(`${url}`)
-// });
+Given('I am on {string} home page', async function(url) {
+  expect(await driver.getCurrentUrl()).to.equal(url)
+});
 
-// When('I type colour in {string}', async function() {
-//   const element = await driver.findElement(By.id("textfield-1703-inputEl"))
-//   element.sendKeys(colour)
-// });
+When('I type {string} in the Search box', async function(name) {
+  const element = await driver.findElement(By.css('.tabletabs .x-form-item-input-row input.x-form-text'))
+  await element.sendKeys(name)
+});
 
 // Then('I should see correct results list',{timeout: 10000}, async function() {
 //   const query = By.css("#gridview-1699-record-ext-record-606 > td.x-grid-cell.x-grid-td.x-grid-cell-headerId-gridcolumn-1674.x-grid-cell-first.x-unselectable > div")

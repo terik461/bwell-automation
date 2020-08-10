@@ -20,5 +20,5 @@ Feature: Bwell Automation QA Task
 
   Scenario: The user can search all Appointments services by name
   	Given I am on 'http://login.myappcms.com/build' home page
-  	When I type colour in 'search box'
+  	When I type 'colour' in the Search box
   	Then I should see correct results list
