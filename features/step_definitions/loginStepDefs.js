@@ -34,7 +34,7 @@ When('I type {string} as Password', async function(password) {
 
 When('I click on Sign in button', async function() {
   const element = await driver.findElement(By.id("login-submit"))
-  element.click()
+  await element.click()
 });
 
 Then('I should see my dashboard', {timeout: 15000}, async function() {
@@ -46,17 +46,16 @@ Then('I should see my dashboard', {timeout: 15000}, async function() {
   expect(text).to.equal(this.appName.toUpperCase())
 });
 
-// Given('I am on {string} page', function(url) {
-//   driver.get(`${url}`)
-// });
+Given('I am on {string} page', function(url) {
+  driver.get(`${url}`)
+});
 
-// When('I click appointments services should appear on the dropdown', async function() {
-//   const element = await driver.findElement(By.xpath('div[@title="Appointments (Menu14)"]'))
-//   console.log('element:', element)
-//   element.click()
-//   const element2 = await driver.findElement(By.css(".Services"))
-//   element2.click()
-// });
+When('I click appointments services should appear on the dropdown', async function() {
+  const appointments = await driver.findElement(By.xpath('//div[@title="Appointments (Menu14)"]'))
+  await appointments.click()
+  const services = await driver.findElement(By.xpath('//div[@title="Services (List32)"]'))
+  await services.click()
+});
 
 // When('I click services results should appear', async function() {
 //   const query = By.css("#paris-view > div.detail > div > header > div.item-vitals > div > h3")
