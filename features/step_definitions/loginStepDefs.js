@@ -1,4 +1,3 @@
-const assert = require('assert');
 const { Given, When, Then, AfterAll, setDefaultTimeout } = require('cucumber');
 const { Builder, By, Capabilities, Key, until } = require('selenium-webdriver');
 const { expect } = require('chai');
@@ -73,7 +72,7 @@ When('I click sort ascending on service name column', async function() {
 
 Then('I should see correct results list', async function () {
   const element = await driver.findElement(By.css('.tabletabs .x-column-header-first.x-column-header-sort-ASC'))
-  assert(element)
+  expect(element).to.not.be.null
 });
 
 When('I type {string} in the Search box', async function(name) {
